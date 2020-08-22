@@ -2,6 +2,7 @@ function Sentiment() {
 
     let https = require ('https');
     
+    //API key and endpoint 
     let subscription_key = "d45b35f9227f41f99c7143ac0c87fc39";
     let endpoint = "https://textemotions.cognitiveservices.azure.com/";
     
@@ -17,12 +18,14 @@ function Sentiment() {
             let body__ = JSON.stringify(body_, null, '  ');
             console.log(body__);
         });
+        //console log error 
         response.on('error', function (e) {
             console.log('Error: ' + e.message);
         });
     };
     
     let get_sentiments = function (documents) {
+        //function takes input as a JSON string 
         let body = JSON.stringify(documents);
     
         let request_params = {
@@ -39,15 +42,21 @@ function Sentiment() {
         req.end();
     }
     
+    //example document
+    
     let documents = {
+        /*
         'documents': [
             { 'id': '1', 'language': 'en', 'text': 'I really enjoy the new XBox One S. It has a clean look, it has 4K/HDR resolution and it is affordable.' },
-            { 'id': '2', 'language': 'es', 'text': 'Este ha sido un dia terrible, llegué tarde al trabajo debido a un accidente automobilistico.' },
         ]
+        */
     };
     
+    
+    //console log JSON return value (sentiment analysis)
     console.log(get_sentiments(documents));
     return(null);
 }
 
 export default Sentiment;
+
