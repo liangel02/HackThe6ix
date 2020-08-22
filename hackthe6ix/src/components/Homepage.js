@@ -10,22 +10,23 @@ class HomePage extends Component {
     }
     render(){
         return (
-            <div>
-                <header>
-                    Talk about your day, and we'll find music to suit your mood!
-                    <form>
-                        <label for="fname">Talk about your day: </label>
-                        <input type="text" id="fname" name="fname"></input>
-                        <input type="submit" name = "submit"></input>
+            <body class="body">
+                <div class="wrapper">
+                    <div class="heading">
+                        What's your mood?
+                    </div>
+                    <form class="mood-form" method="post">
+                        <input type="text" name="Tell us about your day" placeholder="How was your day?" required autocomplete="off"></input>
+                        <input type="submit" name="submit" value="SAVE" class="submit"></input>
                     </form>
-                </header>
-                <header>
-                    No thanks, I know I'm feeling:
-                </header>
-            </div>
-            
+                    <div>
+                        No thanks, my mood is: 
+                    </div>
+                </div>
+            </body>
         );
     }
 }
 
 export default HomePage;
+
