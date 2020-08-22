@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css?family=Grenze&display=swap');
+
+.body{
+    background-image: linear-gradient(-20deg, #f8edaf 0%, #c4effa 100%);
+    background-repeat: no-repeat;
+    min-height: 99vh;
+     font-family: 'Grenze', serif;
+}
+
+.wrapper{
+   padding: 20px;
+   width: 100%;
+   margin: auto;
+   box-shadow: 0px 8px 60px -10px rgba(18, 39, 13, 0.6);
+   background: #fff;
+   border-radius: 12px;
+   max-width: 700px;
+   position: relative;
+}
+.heading{
+  display: block;
+  text-align: center;
+  font-size: 30px;
+  color: #c4effa;
+}
+.mood-form{
+ 
+}
+.mood-form input{
+  width: 96%;
+  border: 1px solid #c4effa;
+  color: #000000;
+  padding: 2%;
+  border-radius: 20px;
+  margin-top: 15px;
+  font-family: 'Grenze', serif;
+}
+.mood-form input:last-child{
+  background: #c4effa;
+  color: #fff;
+  width: 20%;
+}
