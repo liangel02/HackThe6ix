@@ -5,7 +5,7 @@ import Sentiment from './sentiment';
 import App from './App';
 import Playlist from './components/Playlist';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+import { BrowserRouter as Router, Route} from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>
