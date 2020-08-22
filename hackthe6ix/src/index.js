@@ -3,13 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Sentiment from './sentiment';
 import App from './App';
+import Playlist from './components/Playlist';
 import * as serviceWorker from './serviceWorker';
-
+import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>
+    <Router>
+      <Route path="/playlist" component = {Playlist} />
+    </Router>
     <App />
     <Sentiment />
+    
   </React.StrictMode>,
   document.getElementById('root')
 );

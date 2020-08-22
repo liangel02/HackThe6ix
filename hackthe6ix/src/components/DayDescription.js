@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { get_sentiments } from '../sentiment.js'
+//import { get_sentiments } from '../sentiment.js'
 
 class DayDescription extends Component {
     constructor(props) {
@@ -23,7 +23,9 @@ class DayDescription extends Component {
                 { 'id': '1', 'language': 'en', 'text': this.state.description},
             ]
         };
-        console.log(get_sentiments(documents))
+        //console.log(get_sentiments(documents))
+        alert(this.state.description);
+        window.location.href = "http://localhost:8888";
     }
     
     render(){
