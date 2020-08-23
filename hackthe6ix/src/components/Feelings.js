@@ -1,12 +1,9 @@
 import React, { Component } from "react";
-import Form from 'react-bootstrap/Form';
-
 
 class Feelings extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            description: ""
         }
     }
 
@@ -14,27 +11,26 @@ class Feelings extends Component {
         return (
             //HTML form to submit day description via text box
             <div class="d-flex justify-content-center my-4">
-                <div>
-                    Tell us more!
+                <pre class="tab">
+                <div class="d-flex justify-content-center my-4">
+                    <span class="font-weight-bold">Least Excited</span>
+                    <form class="range-field w-70">
+                        &nbsp;
+                        <input class="border-0" type="range" min="0" max="10" />
+                    </form>
+                    <span class="font-weight-bold">&nbsp;Most Excited</span>
                 </div>
                 
-                <Form>
-                <div>
-                    <Form.Group controlId="formBasicRange">
-                        <Form.Label>Least excited</Form.Label>
-                        <Form.Control type="range" min = "0" max = "10"/>
-                        <Form.Label>Most excited</Form.Label>
-                    </Form.Group>
+                <div class="d-flex justify-content-center my-4">
+                    <span class="font-weight-bold">Least Energy</span>
+                    <form class="range-field w-40">
+                        &nbsp;
+                        <input class="border-0" type="range" min="0" max="10" />
+                    </form>
+                    <span class="font-weight-bold blue-text">&nbsp;Most Energy</span>
                 </div>
-                <div>
-                    <Form.Group controlId="formBasicRange">
-                        <Form.Label>Least energy</Form.Label>
-                        <Form.Control type="range" min = "0" max = "10"/>
-                        <Form.Label>Most energy</Form.Label>
-                    </Form.Group>
-                </div>
-                </Form>
-                </div>
+                </pre>
+            </div>
         );
     }
 }

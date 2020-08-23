@@ -21,11 +21,14 @@ class HomePage extends Component {
                         What's your mood?
                     </div>
                     <DayDescription /><br></br>
-                    <div>
+                    <div class="d-flex justify-content-center my-4">
                         No thanks, my mood is: 
-                        <MoodDropdown /><br></br>
+                        &nbsp; &nbsp; &nbsp; <MoodDropdown /><br></br>
                     </div>
-                    <Feelings />
+                    <div class="d-flex justify-content-center my-4">
+                        Tell us more!
+                    </div>
+                    <Feelings/>
                 </div>
             </body>
         );
