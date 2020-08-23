@@ -3,6 +3,8 @@ import DayDescription from "./DayDescription";
 import Feelings from "./Feelings";
 import MoodDropdown from "./MoodDropdown";
 
+import logo from "../media/Spotify-Logo.png";
+
 class HomePage extends Component {
     constructor(props) {
         super(props);
@@ -18,7 +20,8 @@ class HomePage extends Component {
             <body class="body">
                 <div class="wrapper">
                     <div class="heading">
-                        What's your mood?
+                        Moodify
+                        <img src={logo} width="10%" height="10%"/>
                     </div>
                     <DayDescription /><br></br>
                     <div class="d-flex justify-content-center my-4">
