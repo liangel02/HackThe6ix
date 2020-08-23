@@ -7,8 +7,11 @@ Webpage that detects a user's emotion through inputted speech before creating a 
 To run: 
 
 npm start
+
 cd spotify_server
+
 cd authorization_code
+
 node app.js 
 
 open index.html from Speech-SDK
