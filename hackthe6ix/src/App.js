@@ -19,7 +19,10 @@ class App extends Component {
       loggedIn: token ? true : false,
       nowPlaying: {
         name: 'unknown',
-        image: ''
+        image: '',
+        features: '',
+        valence: 0,
+        energy: 0
       }
     }
   }
@@ -39,22 +42,17 @@ class App extends Component {
   getNowPlaying = () => {
     spotifyApi.getMyCurrentPlaybackState()
       .then((response) => {
-        console.log(response)
         this.setState({
           nowPlaying: {
             name: response.item.name,
-            image: response.item.album.images[0].url
+            image: response.item.album.images[0].url,
           }
         })
-      })
-    spotifyApi.getUserPlaylists()
-      .then((response) => {
-        let length = response.items.length;
-        for (var i = 0; i < length; i++) {
-          console.log(response.items[i].name)
-        }
+
+        spotifyApi.getAudioFeaturesForTrack(response.item.id)
       })
   }
+
 
 
   render() {

@@ -5,20 +5,32 @@ class MoodDropdown extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            description: ""
+            mood: ""
         }
     }
+
+    //call this function when there is a change made in the dropdown selection 
+    changeHandler = (e) => {
+        this.props.parentCallback(e);
+        this.setState({mood: e})
+    }
     render() {
+        let display = "";
+        if (this.state.mood === "") {
+            display = "Select your mood!";
+        } else {
+            display = this.state.mood;
+        }
         return(
-            <Dropdown>
+            <Dropdown onSelect={this.changeHandler}>
                 <div>
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
-                    Select your mood!
+                    {display}
                 </Dropdown.Toggle>
                 <Dropdown.Menu class = "mood-form input">
-                    <Dropdown.Item href="#/action-1">Positive</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">Neutral</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">Negative</Dropdown.Item>
+                    <Dropdown.Item eventKey="Positive">Positive</Dropdown.Item>
+                    <Dropdown.Item eventKey="Neutral">Neutral</Dropdown.Item>
+                    <Dropdown.Item eventKey="Negative">Negative</Dropdown.Item>
                 </Dropdown.Menu>
                 </div>
             </Dropdown>

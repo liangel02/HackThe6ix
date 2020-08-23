@@ -2,19 +2,40 @@ import React, { Component } from "react";
 import DayDescription from "./DayDescription";
 import Feelings from "./Feelings";
 import MoodDropdown from "./MoodDropdown";
-
 import logo from "../media/Spotify-Logo.png";
+import { Button } from 'react-bootstrap';
 
 class HomePage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            mood: "sad",
+            mood: "Neutral",
             colour: this.props.colour,
-            description: ""
+            description: "",
+            excitement: 10,
+            energy: 10
         }
     }
 
+
+    // Send data from child components to homepage
+    callbackMood = (childData) => {
+        this.setState({mood: childData});
+    }
+    callbackExcitement = (childData) => {
+        this.setState({excitement: childData})
+        console.log(childData);
+    }
+    callbackEnergy = (childData) => {
+        this.setState({energy: childData})
+        console.log(childData);
+    }
+
+    submitHandler = (event) => {
+        //prevents page from refreshing after submission 
+        event.preventDefault();
+        window.location.href = "http://localhost:8888";
+    }
     render(){
         return (
             <body class="body">
@@ -23,15 +44,21 @@ class HomePage extends Component {
                         Moodify
                         <img src={logo} width="10%" height="10%"/>
                     </div>
-                    <DayDescription /><br></br>
+                    <DayDescription />
                     <div class="d-flex justify-content-center my-4">
-                        No thanks, my mood is: 
-                        &nbsp; &nbsp; &nbsp; <MoodDropdown /><br></br>
+                        OR 
                     </div>
+                    <div class="d-flex justify-content-center my-4">
+                        <MoodDropdown parentCallback = {this.callbackMood}/>
+                    </div>
+                    <br></br>
                     <div class="d-flex justify-content-center my-4">
                         Tell us more!
                     </div>
-                    <Feelings/>
+                    <Feelings parentExcitementCB = {this.callbackExcitement} parentEnergyCB = {this.callbackEnergy}/>
+                    <div class="d-flex justify-content-center my-4">
+                        <Button variant="primary" size="lg" onClick={this.submitHandler}>Find Music</Button>
+                    </div>
                 </div>
             </body>
         );
