@@ -34,7 +34,9 @@ class DayDescription extends Component {
             <form class="mood-form" method="post" onSubmit ={this.submitHandler}>
                 <input type="text" name="Tell us about your day" placeholder="How was your day?" required autocomplete="off" onChange={this.changeHandler}>
                 </input>
-                <input type="submit" name="submit" value="Find me music" class="submit"></input>
+                <div class="d-flex justify-content-center my-4">
+                    <input type="submit" name="submit" value="Find me music" class="submit"></input>
+                </div>
             </form>
         );
     }
