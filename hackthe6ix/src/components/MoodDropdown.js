@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Dropdown from 'react-bootstrap/Dropdown';
+import { Dropdown } from 'react-bootstrap';
 
 class MoodDropdown extends Component {
     constructor(props) {

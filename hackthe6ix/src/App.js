@@ -47,7 +47,16 @@ class App extends Component {
           }
         })
       })
+    spotifyApi.getUserPlaylists()
+      .then((response) => {
+        let length = response.items.length;
+        for (var i = 0; i < length; i++) {
+          console.log(response.items[i].name)
+        }
+      })
   }
+
+
   render() {
     return (
         <div className='App'>
