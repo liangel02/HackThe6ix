@@ -6,7 +6,7 @@ import App from './App';
 import Playlist from './components/Playlist';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router, Route} from "react-router-dom";
-//import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 ReactDOM.render(
