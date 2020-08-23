@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import DayDescription from "./DayDescription";
+import Feelings from "./Feelings";
+import MoodDropdown from "./MoodDropdown";
 
 class HomePage extends Component {
     constructor(props) {
@@ -18,10 +20,12 @@ class HomePage extends Component {
                     <div class="heading">
                         What's your mood?
                     </div>
-                    <DayDescription />
+                    <DayDescription /><br></br>
                     <div>
                         No thanks, my mood is: 
+                        <MoodDropdown /><br></br>
                     </div>
+                    <Feelings />
                 </div>
             </body>
         );
