@@ -19,46 +19,22 @@
       </tr>
       <tr>
         <!-- subscription key -->
-        <td><input style = "display:none" id="subscriptionKey" type="text" size="40" value="bd7665afa1454f8f9ee80125a4ff9392"></td>
+        <td><input style = "display:none" id="APIKey" type="text" size="40" value="bd7665afa1454f8f9ee80125a4ff9392"></td>
       </tr>
       <tr>
         <!-- region -->
-        <td><input style = "display:none" id="serviceRegion" type="text" size="40" value="canadacentral"></td>
+        <td><input style = "display:none" id="location" type="text" size="40" value="canadacentral"></td>
       </tr>
       <tr>
         <!-- input language -->
-        <td><select style = "display:none" id="languageSourceOptions" value = "en-US">
+        <td><select style = "display:none" id="inputLang" value = "en-US">
           <option value="en-US">English - US</option>
-          <option value="es-ES">Spanish - ES</option>
-          <option value="fi-FI">Finnish - FI</option>
-          <option value="fr-FR">French - FR</option>
-          <option value="hi-IN">Hindi - IN</option>
-          <option value="it-IT">Italian - IT</option>
-          <option value="ja-JP">Japanese - JP</option>
-          <option value="ko-KR">Korean - KR</option>
-          <option value="pl-PL">Polish - PL</option>
-          <option value="pt-BR">Portuguese - BR</option>
-          <option value="ru-RU">Russian - RU</option>
-          <option value="sv-SE">Swedish - SE</option>
-          <option value="zh-Hans">Chinese - Simplified</option>
         </select></td>
       </tr>
       <tr>
         <!-- output language -->
-        <td><select style = "display:none" id="languageTargetOptions" value = "en">
+        <td><select style = "display:none" id="outputLang" value = "en">
           <option value="en">English</option>
-          <option value="es">Spanish</option>
-          <option value="fi">Finnish</option>
-          <option value="fr">French</option>
-          <option value="hi">Hindi</option>
-          <option value="it">Italian</option>
-          <option value="ja">Japanese</option>
-          <option value="ko">Korean</option>
-          <option value="pl">Polish</option>
-          <option value="pt">Portuguese</option>
-          <option value="ru">Russian</option>
-          <option value="sv">Swedish</option>
-          <option value="zh-Hans">Chinese - Simplified</option>
         </select></td>
       </tr>
       <tr>
@@ -93,10 +69,10 @@
       a.send("");
       a.onload = function() {
         var token = JSON.parse(atob(this.responseText.split(".")[1]));
-        serviceRegion.value = token.region;
+        location.value = token.region;
         authorizationToken = this.responseText;
-        subscriptionKey.disabled = true;
-        subscriptionKey.value = "using authorization token (hit F5 to refresh)";
+        APIKey.disabled = true;
+        APIKey.value = "using authorization token (hit F5 to refresh)";
         console.log("Got an authorization token: " + token);
       }
     }
@@ -112,7 +88,7 @@
     var startRecognizeOnceAsyncButton;
 
     // subscription key and region for speech services.
-    var subscriptionKey, serviceRegion, languageTargetOptions, languageSourceOptions;
+    var APIKey, location, outputLang, inputLang;
     var authorizationToken;
     var SpeechSDK;
     var recognizer;
@@ -121,33 +97,33 @@
     // extract inputted information from html form 
     // assign html value to each corresponding variable 
       startRecognizeOnceAsyncButton = document.getElementById("startRecognizeOnceAsyncButton");
-      subscriptionKey = document.getElementById("subscriptionKey");
-      serviceRegion = document.getElementById("serviceRegion");
-      languageTargetOptions = document.getElementById("languageTargetOptions");
-      languageSourceOptions = document.getElementById("languageSourceOptions");
+      APIKey = document.getElementById("APIKey");
+      location = document.getElementById("location");
+      outputLang = document.getElementById("outputLang");
+      inputLang = document.getElementById("inputLang");
       phraseDiv = document.getElementById("phraseDiv");
 
       startRecognizeOnceAsyncButton.addEventListener("click", function () {
         startRecognizeOnceAsyncButton.disabled = true;
         phraseDiv.innerHTML = "";
 
-        // if we got an authorization token, use the token. Otherwise use the provided subscription key
+        // if we got an authorization token, use the token. Otherwise use the provided api key
         var speechConfig;
         if (authorizationToken) {
-          speechConfig = SpeechSDK.SpeechTranslationConfig.fromAuthorizationToken(authorizationToken, serviceRegion.value);
+          speechConfig = SpeechSDK.SpeechTranslationConfig.fromAuthorizationToken(authorizationToken, location.value);
         } else {
-        // if subscriptionKey is empty 
-          if (subscriptionKey.value === "" || subscriptionKey.value === "subscription") {
+        // if APIKey is empty 
+          if (APIKey.value === "" || APIKey.value === "subscription") {
             alert("Please enter your Microsoft Cognitive Services Speech subscription key!");
             startRecognizeOnceAsyncButton.disabled = false;
             return;
           }
-          // inputted subscription key and service region used to call api 
-          speechConfig = SpeechSDK.SpeechTranslationConfig.fromSubscription(subscriptionKey.value, serviceRegion.value);
+          // inputted api key and service region used to call api 
+          speechConfig = SpeechSDK.SpeechTranslationConfig.fromSubscription(APIKey.value, location.value);
         }
 
         // language
-        speechConfig.speechRecognitionLanguage = languageSourceOptions.value;
+        speechConfig.speechRecognitionLanguage = inputLang.value;
         let language = languageTargetOptions.value
         speechConfig.addTargetLanguage("en")
 
@@ -159,7 +135,9 @@
           function (result) {
             startRecognizeOnceAsyncButton.disabled = false;
             let translation = result.translations.get(language);
-            window.console.log(translation);
+            // store translated text to local storage
+            localStorage.setItem("localStorage", translation);  
+            window.console.log("done" + translation);
             phraseDiv.innerHTML += translation;
 
             recognizer.close();
@@ -174,6 +152,8 @@
             recognizer = undefined;
           });
       });
+
+      
 
       if (!!window.SpeechSDK) {
         SpeechSDK = window.SpeechSDK;

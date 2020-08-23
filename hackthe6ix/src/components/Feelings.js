@@ -26,21 +26,21 @@ class Feelings extends Component {
             <div class="d-flex justify-content-center my-4">
                 <pre class="tab">
                 <div class="d-flex justify-content-center my-4">
-                    <span class="font-weight-bold">Least Excited</span>
+                    <span class="font-weight-bold">Least Excited (0)</span>
                     <form class="range-field w-70">
                         &nbsp;
                         <input class="border-0" type="range" min="0" max="10" onChange={this.changeExcitement}/>
                     </form>
-                    <span class="font-weight-bold">&nbsp;Most Excited</span>
+                    <span class="font-weight-bold">&nbsp;Most Excited(10)</span>
                 </div>
                 
                 <div class="d-flex justify-content-center my-4">
-                    <span class="font-weight-bold">Least Energetic</span>
+                    <span class="font-weight-bold">Least Energetic(0)</span>
                     <form class="range-field w-40">
                         &nbsp;
                         <input class="border-0" type="range" min="0" max="10" onChange={this.changeEnergy} />
                     </form>
-                    <span class="font-weight-bold blue-text">&nbsp;Most Energetic</span>
+                    <span class="font-weight-bold blue-text">&nbsp;Most Energetic(10)</span>
                 </div>
                 </pre>
             </div>

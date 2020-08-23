@@ -11,12 +11,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
   <React.StrictMode>
+    
+    <App />
+    <Sentiment />
     <Router>
       <Route path="/playlist" component = {Playlist} />
     </Router>
-    <App />
-    <Sentiment />
-    
   </React.StrictMode>,
   document.getElementById('root')
 );
