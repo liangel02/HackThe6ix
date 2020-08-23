@@ -159,7 +159,8 @@
           function (result) {
             startRecognizeOnceAsyncButton.disabled = false;
             let translation = result.translations.get(language);
-            window.console.log(translation);
+            localStorage.setItem("vOneLocalStorage", translation);  
+            window.console.log("done");
             phraseDiv.innerHTML += translation;
 
             recognizer.close();
@@ -174,6 +175,8 @@
             recognizer = undefined;
           });
       });
+
+      
 
       if (!!window.SpeechSDK) {
         SpeechSDK = window.SpeechSDK;
