@@ -67,6 +67,7 @@ class Sentiment extends Component {
         
         //console log JSON return value (sentiment analysis)
         console.log(getSentiments(documents));
+        localStorage.setItem("vTwoLocalStorage", getSentiments(documents));
         return(null);
     }
 }

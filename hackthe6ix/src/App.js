@@ -5,7 +5,7 @@ import './styles/style.css';
 
 import SpotifyWebApi from 'spotify-web-api-js';
 const spotifyApi = new SpotifyWebApi();
-
+var tempSentimemt = localStorage.getItem("vTwoLocalStorage");
 
 class App extends Component {
   constructor() {
