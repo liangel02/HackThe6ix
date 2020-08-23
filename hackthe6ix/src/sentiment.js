@@ -5,9 +5,9 @@ class Sentiment extends Component {
         super(props);
         this.state = {
             description: ""
-
         }
     }
+    
     render() {
         let https = require ('https');
         
@@ -37,7 +37,7 @@ class Sentiment extends Component {
             //function takes input as a JSON string 
             let body = JSON.stringify(documents);
         
-            let request_params = {
+            let reqParams = {
                 method: 'POST',
                 hostname: (new URL(endpoint)).hostname,
                 path: path,
@@ -46,9 +46,9 @@ class Sentiment extends Component {
                 }
             };
         
-            let req = https.request(request_params, responseHandler);
-            req.write(body);
-            req.end();
+            let request = https.request(reqParams, responseHandler);
+            request.write(body);
+            request.end();
         }
         
         //example document
@@ -59,15 +59,15 @@ class Sentiment extends Component {
         var text = JSON.stringify(temp);
         window.console.log(temp);
 
-        let documents = {
+        let returnJSON = {
             'documents': [
-                { 'id': '1', 'language': 'en', 'text': text},
+                { 'id': '1', 'language': 'en', 'text': 'Hack the 6ix was an amazing experience'},
             ]
         };
         
         //console log JSON return value (sentiment analysis)
-        console.log(getSentiments(documents));
-        localStorage.setItem("vTwoLocalStorage", getSentiments(documents));
+        console.log(getSentiments(returnJSON));
+        localStorage.setItem("localStorage", getSentiments(returnJSON));
         return(null);
     }
 }
