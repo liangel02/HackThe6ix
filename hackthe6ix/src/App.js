@@ -3,6 +3,7 @@ import './App.css';
 import Homepage from './components/Homepage.js';
 import './styles/style.css';
 
+//import api
 import SpotifyWebApi from 'spotify-web-api-js';
 const spotifyApi = new SpotifyWebApi();
 var tempSentimemt = localStorage.getItem("vTwoLocalStorage");
